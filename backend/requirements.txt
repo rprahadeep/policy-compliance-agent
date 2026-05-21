@@ -1,0 +1,12 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-dotenv==1.0.1
+pydantic-settings==2.7.1
+pypdf==6.11.0
+pinecone==5.4.2
+openai==1.59.7
+langchain-openai==0.2.14
+langgraph==0.2.62
+tiktoken==0.8.0
+rank-bm25==0.2.2
+deepeval==2.0.9
