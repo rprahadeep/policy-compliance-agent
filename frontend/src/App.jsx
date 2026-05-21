@@ -66,7 +66,7 @@ export function App() {
         question,
         employee_context: employeeContext || null,
         filters: { category: category || null },
-        top_k: 8,
+        top_k: 5,
       });
       setAnswer(data);
       refresh();

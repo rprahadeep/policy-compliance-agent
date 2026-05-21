@@ -49,7 +49,12 @@ PINECONE_API_KEY=your_pinecone_key
 PINECONE_INDEX_NAME=policy-compliance-agent
 PINECONE_CLOUD=aws
 PINECONE_REGION=us-east-1
+LANGSMITH_TRACING=false
+LANGSMITH_API_KEY=your_langsmith_key
+LANGSMITH_PROJECT=policy-compliance-agent
 ```
+
+Set `LANGSMITH_TRACING=true` to trace LangGraph and LangChain calls in LangSmith.
 
 Run the API:
 
@@ -101,6 +106,7 @@ The assistant returns:
 - `recommendations`: compliant alternatives or next steps
 - `citations`: source policy, page, section, and text excerpt
 - `agent_trace`: short outputs from each LangGraph agent
+- `context_precision`: share of retrieved policy passages that were relevant enough to support the generated answer
 
 ## Design Choices
 

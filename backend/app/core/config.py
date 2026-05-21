@@ -1,4 +1,5 @@
 from functools import lru_cache
+import os
 from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -15,7 +16,11 @@ class Settings(BaseSettings):
     policy_data_dir: str = "data/policies"
     local_store_path: str = "storage/chunks.jsonl"
     analytics_path: str = "storage/analytics.json"
-    allowed_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
+    allowed_origins: str = "http://localhost:4173,http://127.0.0.1:4173"
+    langsmith_tracing: bool = False
+    langsmith_api_key: str = ""
+    langsmith_project: str = "policy-compliance-agent"
+    langsmith_endpoint: str = "https://api.smith.langchain.com"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
@@ -42,7 +47,20 @@ class Settings(BaseSettings):
     def cors_origins(self) -> list[str]:
         return [origin.strip() for origin in self.allowed_origins.split(",") if origin.strip()]
 
+    def configure_langsmith(self) -> None:
+        if not self.langsmith_tracing:
+            return
+        os.environ["LANGSMITH_TRACING"] = "true"
+        os.environ["LANGSMITH_PROJECT"] = self.langsmith_project
+        os.environ["LANGSMITH_ENDPOINT"] = self.langsmith_endpoint
+        os.environ["LANGCHAIN_TRACING_V2"] = "true"
+        os.environ["LANGCHAIN_PROJECT"] = self.langsmith_project
+        if self.langsmith_api_key:
+            os.environ["LANGSMITH_API_KEY"] = self.langsmith_api_key
+
 
 @lru_cache
 def get_settings() -> Settings:
-    return Settings()
+    settings = Settings()
+    settings.configure_langsmith()
+    return settings

@@ -41,7 +41,12 @@ app.add_middleware(
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "model": settings.chat_model, "index": settings.pinecone_index_name}
+    return {
+        "status": "ok",
+        "model": settings.chat_model,
+        "index": settings.pinecone_index_name,
+        "langsmith": "enabled" if settings.langsmith_tracing else "disabled",
+    }
 
 
 @app.get("/api/v1/policies", response_model=list[PolicyInfo])
@@ -199,5 +204,6 @@ def execute_query(request: QueryRequest) -> QueryResponse:
         recommendations=state["recommendations"],
         citations=to_citations(state.get("retrieved_chunks", [])),
         agent_trace=state.get("agent_trace", {}),
+        context_precision=state.get("context_precision", {}),
         token_usage=state.get("token_usage", {}),
     )

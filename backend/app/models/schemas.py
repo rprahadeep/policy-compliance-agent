@@ -27,7 +27,7 @@ class QueryRequest(BaseModel):
     question: str = Field(..., min_length=3, max_length=2000)
     employee_context: str | None = Field(default=None, max_length=2000)
     filters: QueryFilters = Field(default_factory=QueryFilters)
-    top_k: int = Field(default=8, ge=3, le=20)
+    top_k: int = Field(default=5, ge=3, le=20)
 
 
 class Citation(BaseModel):
@@ -48,6 +48,13 @@ class RiskAssessment(BaseModel):
     escalate: bool = False
 
 
+class ContextPrecisionMetric(BaseModel):
+    score: float = Field(default=0.0, ge=0.0, le=1.0)
+    relevant_contexts: int = 0
+    total_contexts: int = 0
+    explanation: str = "Context precision estimates how much retrieved policy context was relevant to the question before answer generation."
+
+
 class QueryResponse(BaseModel):
     answer: str
     compliance_status: ComplianceStatus
@@ -55,6 +62,7 @@ class QueryResponse(BaseModel):
     recommendations: list[str]
     citations: list[Citation]
     agent_trace: dict[str, str]
+    context_precision: ContextPrecisionMetric = Field(default_factory=ContextPrecisionMetric)
     token_usage: dict[str, int] = Field(default_factory=dict)
 
 

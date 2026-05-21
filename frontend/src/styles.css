@@ -1,6 +1,6 @@
 :root {
-  color: #191a1f;
-  background: #f4f3ee;
+  color: #0f172a;
+  background: #f7f8fb;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,6 +13,10 @@
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 248, 251, 0.96) 34%),
+    #f7f8fb;
 }
 
 button,
@@ -34,32 +38,35 @@ p {
 }
 
 .app-shell {
-  width: min(1440px, calc(100vw - 28px));
+  width: min(1480px, calc(100vw - 32px));
+  max-width: 100%;
   margin: 0 auto;
-  padding: 22px 0 34px;
+  padding: 20px 0 36px;
 }
 
 .app-header {
-  min-height: 82px;
+  min-height: 76px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 16px;
-  padding: 16px 18px;
-  background: #111318;
-  color: #f8f7f0;
+  gap: 14px;
+  padding: 14px;
+  color: #0f172a;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
-  border: 1px solid #272b33;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(18px);
 }
 
 .brand-mark {
-  width: 48px;
+  width: 44px;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
   border-radius: 8px;
-  color: #73d1b2;
-  background: #1f2a27;
+  color: #ffffff;
+  background: #101827;
 }
 
 .brand-copy span,
@@ -67,8 +74,8 @@ p {
 .panel-title span {
   display: block;
   margin-bottom: 5px;
-  color: #747b88;
-  font-size: 0.76rem;
+  color: #64748b;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -76,21 +83,28 @@ p {
 
 .brand-copy h1 {
   margin-bottom: 0;
-  font-size: clamp(1.7rem, 3vw, 2.65rem);
-  line-height: 1;
+  font-size: clamp(1.45rem, 2.4vw, 2.15rem);
+  line-height: 1.05;
   letter-spacing: 0;
 }
 
 .button {
-  min-height: 42px;
+  min-height: 40px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  padding: 0 15px;
-  font-weight: 850;
+  gap: 8px;
+  padding: 0 14px;
+  font-weight: 800;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+.button:hover:not(:disabled),
+.template-card:hover,
+.context-chips button:hover {
+  transform: translateY(-1px);
 }
 
 .button:disabled {
@@ -99,54 +113,58 @@ p {
 }
 
 .button-dark {
-  background: #f1f4ee;
-  color: #111318;
+  background: #101827;
+  color: #ffffff;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.16);
 }
 
 .button-primary {
   width: 100%;
-  background: #2a5bff;
+  background: #2563eb;
   color: #ffffff;
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.2);
 }
 
 .metric-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 10px;
   margin: 12px 0;
 }
 
 .metric-cell {
-  min-height: 86px;
+  min-height: 92px;
   padding: 14px;
-  border: 1px solid #d8d7cf;
+  border: 1px solid #e6e9ef;
   border-radius: 8px;
   background: #ffffff;
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 9px;
+  gap: 8px 10px;
   align-items: start;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.045);
 }
 
 .metric-cell div {
-  color: #2a5bff;
+  color: #2563eb;
 }
 
 .metric-cell span {
-  color: #69707c;
-  font-size: 0.82rem;
+  color: #64748b;
+  font-size: 0.8rem;
   font-weight: 800;
 }
 
 .metric-cell strong {
   grid-column: 1 / -1;
-  font-size: 1.65rem;
+  font-size: 1.7rem;
   line-height: 1;
+  letter-spacing: 0;
 }
 
 .workbench {
   display: grid;
-  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr) minmax(300px, 390px);
+  grid-template-columns: minmax(290px, 360px) minmax(0, 1fr) minmax(290px, 370px);
   gap: 12px;
   align-items: start;
 }
@@ -154,9 +172,11 @@ p {
 .command-panel,
 .decision-brief,
 .evidence-panel {
-  border: 1px solid #d8d7cf;
+  min-width: 0;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
   background: #ffffff;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.055);
 }
 
 .command-panel,
@@ -174,6 +194,7 @@ p {
 .panel-title,
 .side-title,
 .decision-topline {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -184,7 +205,7 @@ p {
 .side-title h2,
 .decision-topline h2 {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.18rem;
   line-height: 1.1;
   text-transform: capitalize;
 }
@@ -196,23 +217,25 @@ p {
 }
 
 .template-card {
-  min-height: 62px;
-  border: 1px solid #e0dfd7;
-  border-radius: 7px;
-  background: #f9f9f5;
+  min-height: 60px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f8fafc;
   padding: 11px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  color: #20242b;
-  font-size: 0.86rem;
-  font-weight: 850;
+  color: #162033;
+  font-size: 0.84rem;
+  font-weight: 800;
   text-align: left;
+  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
 }
 
 .template-card:hover {
-  border-color: #2a5bff;
+  border-color: #93c5fd;
+  background: #ffffff;
 }
 
 .query-form {
@@ -223,27 +246,31 @@ p {
 label {
   display: grid;
   gap: 8px;
-  color: #343a43;
-  font-size: 0.86rem;
-  font-weight: 850;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 800;
 }
 
 textarea,
 select {
   width: 100%;
-  border: 1px solid #cfd2d8;
-  border-radius: 7px;
+  border: 1px solid #d8dee8;
+  border-radius: 8px;
   outline: none;
-  background: #fbfbf8;
-  color: #191a1f;
-  padding: 11px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 11px 12px;
   resize: vertical;
+}
+
+textarea {
+  line-height: 1.45;
 }
 
 textarea:focus,
 select:focus {
-  border-color: #2a5bff;
-  box-shadow: 0 0 0 3px rgba(42, 91, 255, 0.12);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
 .context-chips,
@@ -256,20 +283,20 @@ select:focus {
 .context-chips button,
 .topics-inline span {
   min-height: 30px;
-  border: 1px solid #d8dce4;
+  border: 1px solid #dbe3ee;
   border-radius: 999px;
-  background: #f6f7fa;
-  color: #48515d;
+  background: #ffffff;
+  color: #475569;
   padding: 0 10px;
-  font-size: 0.78rem;
-  font-weight: 780;
+  font-size: 0.76rem;
+  font-weight: 800;
 }
 
 .error-box {
-  border-radius: 7px;
-  background: #fff1ed;
-  border: 1px solid #ffc9b9;
-  color: #9c351f;
+  border-radius: 8px;
+  background: #fff5f3;
+  border: 1px solid #fecaca;
+  color: #991b1b;
   padding: 11px;
   font-weight: 750;
 }
@@ -277,19 +304,24 @@ select:focus {
 .decision-brief {
   min-height: 650px;
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
 .risk-badge {
-  width: 92px;
+  width: 88px;
   aspect-ratio: 1;
   border-radius: 8px;
   display: grid;
   place-items: center;
   align-content: center;
   text-transform: uppercase;
-  background: #eef1f5;
-  color: #454d58;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.risk-badge span {
+  font-size: 0.68rem;
+  font-weight: 900;
 }
 
 .risk-badge strong {
@@ -298,67 +330,111 @@ select:focus {
 }
 
 .risk-badge.good {
-  color: #096548;
-  background: #e9f8f1;
+  color: #047857;
+  background: #ecfdf5;
 }
 
 .risk-badge.warning {
-  color: #745100;
-  background: #fff6d8;
+  color: #92400e;
+  background: #fffbeb;
 }
 
 .risk-badge.danger {
-  color: #9c2e1b;
-  background: #fff0ec;
+  color: #b91c1c;
+  background: #fef2f2;
 }
 
-.confidence-row {
+.confidence-row,
+.metric-explainer {
   display: grid;
   gap: 9px;
   padding: 13px;
-  border: 1px solid #e2e3e7;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
-  background: #f8f8f4;
+  background: #f8fafc;
 }
 
-.confidence-row span {
+.confidence-row span,
+.metric-explainer span {
   display: block;
-  color: #69707c;
-  font-size: 0.78rem;
+  color: #64748b;
+  font-size: 0.76rem;
   font-weight: 850;
   text-transform: uppercase;
 }
 
+.metric-explainer > div:first-child {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.metric-explainer strong {
+  font-size: 1.55rem;
+}
+
+.metric-explainer p,
+.metric-explainer small {
+  margin: 0;
+  color: #526074;
+  line-height: 1.5;
+}
+
+.metric-explainer small {
+  font-weight: 800;
+}
+
 .confidence-meter {
-  height: 9px;
+  height: 8px;
   overflow: hidden;
   border-radius: 999px;
-  background: #e2e5ea;
+  background: #e2e8f0;
 }
 
 .confidence-meter i {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: #2a5bff;
+  background: #2563eb;
 }
 
 .answer-copy {
-  color: #242931;
-  white-space: pre-wrap;
+  color: #1e293b;
   line-height: 1.65;
-  font-size: 1.01rem;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.answer-copy p {
+  margin: 0 0 10px;
+}
+
+.answer-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.answer-copy strong {
+  color: #0f172a;
+  font-weight: 850;
+}
+
+.answer-list-line {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
 }
 
 .recommendation-list,
 .risk-note {
-  border-top: 1px solid #e6e6e0;
-  padding-top: 16px;
+  border-top: 1px solid #edf0f4;
+  padding-top: 15px;
 }
 
 .recommendation-list h3,
 .risk-note h3 {
   margin-bottom: 10px;
+  font-size: 1rem;
 }
 
 .recommendation-item {
@@ -366,39 +442,39 @@ select:focus {
   align-items: flex-start;
   gap: 10px;
   margin: 9px 0;
-  color: #283039;
+  color: #263244;
   line-height: 1.45;
 }
 
 .recommendation-item svg {
-  color: #11906b;
+  color: #059669;
   flex: 0 0 auto;
   margin-top: 2px;
 }
 
 .risk-note p {
-  color: #4b535e;
+  color: #475569;
   line-height: 1.55;
 }
 
 .risk-note b {
   display: inline-flex;
   border-radius: 999px;
-  background: #fff0ec;
-  color: #9c2e1b;
+  background: #fef2f2;
+  color: #b91c1c;
   padding: 7px 10px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
 }
 
 .empty-brief {
   place-items: center;
   align-content: center;
   text-align: center;
-  color: #69707c;
+  color: #64748b;
 }
 
 .empty-brief h2 {
-  color: #191a1f;
+  color: #0f172a;
 }
 
 .empty-brief p {
@@ -417,11 +493,11 @@ select:focus {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border: 1px solid #dfe2e7;
+  border: 1px solid #e2e8f0;
   border-radius: 999px;
   padding: 8px 11px;
-  background: #f8f8f4;
-  color: #3e4651;
+  background: #ffffff;
+  color: #334155;
   font-size: 0.82rem;
   font-weight: 800;
 }
@@ -434,7 +510,7 @@ select:focus {
 
 .evidence-section {
   padding: 16px;
-  border-bottom: 1px solid #e4e4dd;
+  border-bottom: 1px solid #edf0f4;
 }
 
 .evidence-section:last-child {
@@ -456,9 +532,9 @@ select:focus {
 
 .citation-item,
 .agent-list article {
-  border: 1px solid #e1e3e8;
-  border-radius: 7px;
-  background: #fbfbf8;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
   padding: 12px;
 }
 
@@ -467,7 +543,7 @@ select:focus {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  color: #20242b;
+  color: #111827;
   font-weight: 850;
 }
 
@@ -478,16 +554,17 @@ select:focus {
 .citation-item small {
   display: block;
   margin: 8px 0;
-  color: #69707c;
+  color: #64748b;
   font-weight: 780;
 }
 
 .citation-item p,
 .agent-list p {
   margin-bottom: 0;
-  color: #4a525e;
+  color: #475569;
   line-height: 1.48;
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
 }
 
 .agent-list strong {
@@ -502,12 +579,14 @@ select:focus {
   justify-content: space-between;
   gap: 10px;
   padding: 9px 0;
-  border-bottom: 1px solid #ededeb;
-  color: #38414b;
+  border-bottom: 1px solid #edf0f4;
+  color: #334155;
 }
 
 .policy-row span {
   font-size: 0.88rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .policy-row b {
@@ -520,7 +599,7 @@ select:focus {
 
 .muted {
   margin-bottom: 0;
-  color: #737b86;
+  color: #64748b;
 }
 
 .spin {
@@ -535,7 +614,7 @@ select:focus {
 
 @media (max-width: 1180px) {
   .workbench {
-    grid-template-columns: 340px 1fr;
+    grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
   }
 
   .evidence-panel {
@@ -544,6 +623,11 @@ select:focus {
 }
 
 @media (max-width: 780px) {
+  .app-shell {
+    width: min(100vw - 20px, 1480px);
+    padding-top: 10px;
+  }
+
   .app-header,
   .metric-strip,
   .workbench {
@@ -552,6 +636,10 @@ select:focus {
 
   .app-header {
     align-items: start;
+  }
+
+  .button-dark {
+    width: 100%;
   }
 
   .command-panel {
